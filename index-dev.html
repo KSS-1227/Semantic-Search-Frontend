@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/public/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search App - Development</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+      .error {
+        background: rgba(255, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        border: 1px solid rgba(255, 0, 0, 0.3);
+      }
+      .solution {
+        background: rgba(0, 255, 0, 0.2);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        border: 1px solid rgba(0, 255, 0, 0.3);
+      }
+      code {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚨 Deployment Configuration Issue</h1>
+
+      <div class="error">
+        <h2>❌ Problem Detected</h2>
+        <p>
+          ContentStack Launch is serving <code>source files</code> instead of
+          <code>built files</code>
+        </p>
+        <p>This causes the MIME type error you're seeing in the console.</p>
+      </div>
+
+      <div class="solution">
+        <h2>✅ Solutions Available</h2>
+        <p><strong>Option 1:</strong> Use GitHub Pages (auto-deployed)</p>
+        <p><code>https://kss-1227.github.io/Semantic-Search-Frontend/</code></p>
+
+        <p>
+          <strong>Option 2:</strong> Configure ContentStack to serve from
+          <code>/dist</code> folder
+        </p>
+
+        <p>
+          <strong>Option 3:</strong> Use Netlify/Vercel for instant deployment
+        </p>
+      </div>
+
+      <p>
+        <small
+          >This page confirms your deployment is working - the issue is just
+          configuration!</small
+        >
+      </p>
+    </div>
+
+    <script>
+      console.log("🔧 Deployment diagnostic page loaded");
+      console.log("📁 Current URL:", window.location.href);
+      console.log("🎯 Expected behavior: Serve files from /dist directory");
+      console.log("❌ Current behavior: Serving source files directly");
+
+      // Try to detect if we're in the right environment
+      fetch("/dist/index.html")
+        .then((response) => {
+          if (response.ok) {
+            console.log(
+              "✅ /dist/index.html is accessible - ContentStack should serve from there"
+            );
+          } else {
+            console.log(
+              "❌ /dist/index.html not accessible - build output not deployed"
+            );
+          }
+        })
+        .catch((err) => {
+          console.log("❌ Cannot access /dist/index.html:", err.message);
+        });
+    </script>
+  </body>
+</html>
