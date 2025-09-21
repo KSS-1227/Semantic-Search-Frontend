@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .status {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 Deployment Test</h1>
+      <div class="status">
+        <h2>✅ Static Files Working</h2>
+        <p>If you can see this page, your deployment is working!</p>
+      </div>
+      <div class="status">
+        <h2>🔧 Next Steps</h2>
+        <p>The React app should load at the main URL</p>
+        <p>Check browser console for any JavaScript errors</p>
+      </div>
+    </div>
+    <script>
+      console.log("Test page loaded successfully");
+      console.log("Current URL:", window.location.href);
+      console.log("User Agent:", navigator.userAgent);
+    </script>
+  </body>
+</html>
