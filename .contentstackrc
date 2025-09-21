@@ -1,0 +1,12 @@
+{
+  "build": {
+    "command": "npm run build",
+    "directory": "dist"
+  },
+  "install": {
+    "command": "npm ci"
+  },
+  "dev": {
+    "command": "npm run dev"
+  }
+}
