@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["components", "hooks", "lib", "App.tsx", "main.tsx", "vite-env.d.ts", "vite.config.ts", "eslint.config.js"]
+  "include": ["components", "hooks", "lib", "App.tsx", "main.tsx", "vite-env.d.ts", "eslint.config.js"]
 }

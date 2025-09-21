@@ -1,11 +1,12 @@
-import tseslint from 'typescript-eslint';
-import react from 'eslint-plugin-react';
+import tseslint from "typescript-eslint";
+import react from "eslint-plugin-react";
 
 export default [
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
+    ignores: ["vite.config.ts"],
     plugins: {
-      '@typescript-eslint': tseslint.plugin,
+      "@typescript-eslint": tseslint.plugin,
       react,
     },
     languageOptions: {
@@ -14,19 +15,19 @@ export default [
         ecmaFeatures: {
           jsx: true,
         },
-        project: './tsconfig.eslint.json',
+        project: "./tsconfig.eslint.json",
       },
     },
     rules: {
       ...tseslint.configs.recommended.rules,
       ...react.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-      'react/no-unknown-property': 'off',
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "react/no-unknown-property": "off",
     },
     settings: {
       react: {
-        version: 'detect',
+        version: "detect",
       },
     },
   },
