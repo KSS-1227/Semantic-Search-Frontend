@@ -15,7 +15,7 @@ interface NavbarProps {
 }
 
 export function Navbar({ onToggleAnalytics, isAnalyticsOpen, onToggleFilters }: NavbarProps) {
-  const { isConnected, isLoading, error } = useBackendStatus();
+  const { isConnected, isLoading } = useBackendStatus();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
