@@ -10,9 +10,14 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
+    minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          icons: ['lucide-react', '@radix-ui/react-icons'],
+        },
       },
     },
   },
@@ -20,5 +25,9 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
     },
+  },
+  server: {
+    port: 3000,
+    host: true,
   },
 })
