@@ -1,7 +1,7 @@
 // Backend API Configuration
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
   (import.meta.env.MODE === 'production' 
-    ? 'https://your-backend-url.com' // Update this with your production URL
+    ? 'https://backend-6omk.onrender.com' // Production backend URL
     : 'http://localhost:3000');
 
 export interface SearchResult {
