@@ -86,7 +86,7 @@ export const searchApi = async (
         query: query.trim(),
         filters,
         limit: 20,
-        threshold: 0.5,
+        threshold: 0.3, // Lower this from 0.5 to 0.3 for more lenient matching
       }),
     });
 
