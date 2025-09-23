@@ -31,7 +31,14 @@ function App() {
   };
 
   useEffect(() => {
-    performSearch(query, filters);
+    // Only perform search if query is not empty and has meaningful content
+    if (query && query.trim().length > 0) {
+      performSearch(query, filters);
+    } else {
+      // Clear results if query is empty
+      setResults([]);
+      setLoading(false);
+    }
   }, [query, filters]);
 
   const handleSearch = (newQuery: string) => {

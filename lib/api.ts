@@ -47,7 +47,17 @@ const apiCall = async (endpoint: string, options: RequestInit = {}) => {
     const response = await fetch(url, defaultOptions);
     
     if (!response.ok) {
-      throw new Error(`API call failed: ${response.status} ${response.statusText}`);
+      // Try to get error details from response
+      let errorMessage = `API call failed: ${response.status} ${response.statusText}`;
+      try {
+        const errorData = await response.json();
+        if (errorData.error) {
+          errorMessage = `${errorMessage} - ${errorData.error}`;
+        }
+      } catch (e) {
+        // Ignore JSON parsing errors for error responses
+      }
+      throw new Error(errorMessage);
     }
     
     return await response.json();
@@ -62,11 +72,17 @@ export const searchApi = async (
   query: string,
   filters: SearchFilters
 ): Promise<SearchResult[]> => {
+  // Validate query before making API call
+  if (!query || typeof query !== 'string' || query.trim().length === 0) {
+    console.warn('Invalid query provided to searchApi:', query);
+    return [];
+  }
+
   try {
     const response = await apiCall('/api/search', {
       method: 'POST',
       body: JSON.stringify({
-        query,
+        query: query.trim(),
         filters,
         limit: 20,
         threshold: 0.5,

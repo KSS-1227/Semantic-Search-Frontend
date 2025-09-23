@@ -40,7 +40,10 @@ export function SearchBar({ onSearch, initialQuery = '' }: SearchBarProps) {
     if (debounceTimeoutRef.current) {
       clearTimeout(debounceTimeoutRef.current);
     }
-    onSearch(query);
+    // Only trigger search if query has meaningful content
+    if (query && query.trim().length > 0) {
+      onSearch(query.trim());
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
