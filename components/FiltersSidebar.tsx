@@ -56,7 +56,22 @@ export function FiltersSidebar({
       try {
         // Only set content types from API, override locales with just English (US)
         const options = await getFilterOptions();
-        setAvailableContentTypes(options.contentTypes || []);
+        
+        // Make sure we always have content types, even if API returns empty
+        if (options.contentTypes && options.contentTypes.length > 0) {
+          setAvailableContentTypes(options.contentTypes);
+        } else {
+          // Fallback content types if API returns empty array
+          setAvailableContentTypes([
+            { value: 'blog_post', label: 'Blog Post' },
+            { value: 'product', label: 'Product' },
+            { value: 'documentation', label: 'Documentation' },
+            { value: 'faq', label: 'FAQ' },
+            { value: 'article', label: 'Article' },
+            { value: 'page', label: 'Page' },
+          ]);
+        }
+        
         // Always set only English (US) as the locale option
         setAvailableLocales([
           { value: 'en-us', label: 'English (US)' },
