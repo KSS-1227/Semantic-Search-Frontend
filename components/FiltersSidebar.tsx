@@ -54,9 +54,17 @@ export function FiltersSidebar({
     // Load filter options from backend
     const loadFilterOptions = async () => {
       try {
+        // Only set content types from API, override locales with just English (US)
         const options = await getFilterOptions();
         setAvailableContentTypes(options.contentTypes || []);
-        setAvailableLocales(options.locales || []);
+        // Always set only English (US) as the locale option
+        setAvailableLocales([
+          { value: 'en-us', label: 'English (US)' },
+        ]);
+        // Set default locale if not already set
+        if (!locales.length) {
+          setLocales(['en-us']);
+        }
       } catch (error) {
         console.error('Failed to load filter options:', error);
         // Fallback to default options
@@ -65,19 +73,24 @@ export function FiltersSidebar({
           { value: 'product', label: 'Product' },
           { value: 'documentation', label: 'Documentation' },
           { value: 'faq', label: 'FAQ' },
+          { value: 'article', label: 'Article' },
+          { value: 'page', label: 'Page' },
         ]);
+        // Always set only English (US) as the locale option
         setAvailableLocales([
           { value: 'en-us', label: 'English (US)' },
-          { value: 'es-es', label: 'Spanish' },
-          { value: 'fr-fr', label: 'French' },
         ]);
+        // Set default locale if not already set
+        if (!locales.length) {
+          setLocales(['en-us']);
+        }
       } finally {
         setLoading(false);
       }
     };
-
+  
     loadFilterOptions();
-  }, []);
+  }, [locales.length]);
 
   const handleContentTypeChange = (type: string, checked: boolean) => {
     setContentTypes((prev) =>
